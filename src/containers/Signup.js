@@ -47,25 +47,14 @@ export default function Signup() {
       setIsLoading(false);
       setNewUser(newUser);
     } catch (e) {
-        //console.log(e);
-
         if(e.name === "UsernameExistsException"){
-            try {
-                //alert("My test message");
-                Auth.resendSignUp(fields.email);
-            } catch(err){
-                console.log(err);
-
-                if(err.name === 'InvalidParameterException' && err.message === 'User is already confirmed.'){
-                    alert("user is already configured different error: " + err.message)
-                    this.props.history.push('/login');
-                }
-            }
+            alert("Username exists in this system try to log in");
+            history.push("/login");
         } else {
             onError(e);
+            setIsLoading(false);
         }
-      //onError(e);
-      setIsLoading(false);
+        setIsLoading(false);
     }
   }
 
@@ -160,4 +149,13 @@ export default function Signup() {
       {newUser === null ? renderForm() : renderConfirmationForm()}
     </div>
   );
+  /*return (
+    <div className="Signup">
+      if (newUser === null) {
+          renderForm()
+      } else {
+          renderConfirmationForm()
+      }
+    </div>
+  );*/
 }
