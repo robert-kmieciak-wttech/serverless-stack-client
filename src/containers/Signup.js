@@ -149,13 +149,4 @@ export default function Signup() {
       {newUser === null ? renderForm() : renderConfirmationForm()}
     </div>
   );
-  /*return (
-    <div className="Signup">
-      if (newUser === null) {
-          renderForm()
-      } else {
-          renderConfirmationForm()
-      }
-    </div>
-  );*/
 }
