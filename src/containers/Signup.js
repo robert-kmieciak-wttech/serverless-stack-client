@@ -37,24 +37,22 @@ export default function Signup() {
     event.preventDefault();
 
     setIsLoading(true);
-
     try {
-        const newUser = await Auth.signUp({
-            username: fields.email,
-            password: fields.password,
-          });
-
+      const newUser = await Auth.signUp({
+        username: fields.email,
+        password: fields.password,
+      });
       setIsLoading(false);
       setNewUser(newUser);
     } catch (e) {
-        if(e.name === "UsernameExistsException"){
-            alert("Username exists in this system try to log in");
-            history.push("/login");
-        } else {
-            onError(e);
-            setIsLoading(false);
-        }
+      if (e.name === "UsernameExistsException") {
+        alert("Username exists in this system try to log in");
+        history.push("/login");
+      } else {
+        onError(e);
         setIsLoading(false);
+      }
+      setIsLoading(false);
     }
   }
 
